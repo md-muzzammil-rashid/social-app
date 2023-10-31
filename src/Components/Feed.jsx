@@ -48,7 +48,7 @@ const Feed = () => {
                 <span className='font-semibold'>{e.likes} likes</span>
             </div>
             <div className=' justify-start text-start px-2'>
-               <span className='font-semibold min-w-fit  float-left h-2'>{e.username}</span><p>
+               <span className='font-semibold min-w-fit  float-left h-2'> {e.username} &nbsp;</span> <p>
                 {e.desc}
                 </p> 
             </div>
