@@ -15,17 +15,19 @@ const Login = () => {
             signInWithPopup(auth, provider).then(async(data)=>{
             useAppState.setLogin(true)
 
-            setDoc(doc(db, `userDB/${data.user.uid}`), {
-                uid: data.user.uid, 
-                displayName: data.user.displayName, 
-                photoURL: data.user.photoURL,
-                email: data.user.email,
-                bio:''
-            })
+            
             const res =await getDoc(doc(db,'userDB',data.user.uid ))
             if(!res.exists())
             {
-                setDoc(doc(db, 'userChats', data.user.uid),{})
+                setDoc(doc(db, 'userChats', data.user.uid),{}).then(
+                    setDoc(doc(db, `userDB/${data.user.uid}`), {
+                        uid: data.user.uid, 
+                        displayName: data.user.displayName, 
+                        photoURL: data.user.photoURL,
+                        email: data.user.email,
+                        bio:''
+                    })
+                )
             }
 
             localStorage.setItem('email', data.user.email)

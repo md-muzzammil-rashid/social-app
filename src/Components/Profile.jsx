@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { appState } from '../App'
-import Login from './Login'
 import { useNavigate, useParams } from 'react-router-dom'
-import { collection, doc, getDoc, updateDoc, setDoc, serverTimestamp } from 'firebase/firestore'
+import { doc, getDoc, updateDoc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from './firebase/firebase'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import BottomNav from './BottomNav'
@@ -12,7 +10,6 @@ import { UserContext } from './Context/UserContext'
 const Profile = () => {
   const navigate = useNavigate()
   const {currentUser}=useContext(UserContext)
-  const useAppState = useContext(appState)
   const {userID} = useParams()
   const [data, setData]=useState({})
   const {dispatch}=useContext(ChatContext)
@@ -53,8 +50,8 @@ const Profile = () => {
     const getData = async() => {
       const _data =await getDoc(doc(db, 'userDB', userID))
       setData(_data.data())
-      console.log(_data.data())
     }
+    console.log('getdata called')
     getData()
   },[])
   return (

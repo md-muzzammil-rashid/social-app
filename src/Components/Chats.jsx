@@ -36,7 +36,7 @@ const Chats = () => {
             <div className='p-2'><img className='rounded-full '  width={50} src={user.userInfo.photoURL} alt="" /></div>
             <div className='p-2 justify-start flex flex-col text-start'>
                 <h2 className='font-bold'>{user.userInfo.displayName}</h2>
-                <h2>i was busy that why  i cannot able to </h2>
+                <h2>{user.lastMessage}</h2>
             </div>
         </div>
          )
