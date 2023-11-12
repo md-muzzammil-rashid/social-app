@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { postRef, db} from './firebase/firebase'
+import { postRef, db, auth} from './firebase/firebase'
 import { addDoc } from 'firebase/firestore'
 import { v4 } from 'uuid'
 import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
 import { cloudDB } from './firebase/firebase'
 import { TailSpin } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
+import BottomNav from './BottomNav'
 
 const AddPost = () => {
   const navigate = useNavigate();
@@ -16,11 +17,12 @@ const AddPost = () => {
   const [form, setForm] = useState({
       image : '',
       desc : '',
-      username : 'ayaan',
+      username : '',
       comments:0,
       imageLink:'',
-      userId:'ayaanrsd',
+      userId:'',
       likes:0,
+      photoURL:'',
       timestamp:new Date().getTime()
   })
  
@@ -36,7 +38,6 @@ const AddPost = () => {
     
     await addDoc(postRef,form)
     navigate('/home')
-
      
   }
 
@@ -56,7 +57,7 @@ const AddPost = () => {
             <p></p>
           }
       <input required accept='image/*' className='m-4' type="file" onChange={(e)=>imageHandler(e)}/>
-      <textarea required rows='4' cols='10' placeholder='Write a caption...' className='flex flex-wrap  m-4 w-11/12 border p-4 border-orange-50 align-top items-start rounded-md h-36 text-start' onChange={(e)=>{setForm({...form, desc:e.target.value})}}/>
+      <textarea required rows='4' cols='10' placeholder='Write a caption...' className='flex flex-wrap  m-4 w-11/12 border p-4 border-orange-50 align-top items-start rounded-md h-36 text-start' onChange={(e)=>{setForm({...form, desc:e.target.value, userId:auth.currentUser.uid, username:auth.currentUser.displayName, photoURL:auth.currentUser.photoURL })}}/>
       {
         uploadImgLoader?
         <div className='w-full flex justify-center'>
@@ -66,6 +67,7 @@ const AddPost = () => {
       }
 
           </div>
+          <BottomNav/>
           </>
   )
 }

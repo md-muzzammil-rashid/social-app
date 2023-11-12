@@ -1,6 +1,7 @@
 import { initializeApp,  } from "firebase/app";
 import {collection, getFirestore} from 'firebase/firestore'
 import {getStorage} from "firebase/storage"
+import {GoogleAuthProvider, getAuth} from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: "AIzaSyCp-ScDV6kc6Zn1WvH-ED7zAu1kLP7RvoM",
@@ -15,6 +16,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const cloudDB = getStorage(app)
+ const provider = new GoogleAuthProvider()
+ const auth = getAuth(app)
 
 export const db = getFirestore(app);
 export const postRef = collection(db, 'post');
+
+export{provider,auth}
