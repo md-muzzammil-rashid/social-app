@@ -38,12 +38,12 @@ const Profile = () => {
         })
         )
     }
-    const userChatData = await getDoc(doc(db,'userChats',combinedID))
-    dispatch({
-      type:"CHANGE_USER",
-      payload:userChatData
+    // const userChatData = await getDoc(doc(db,'userChats',combinedID))
+    // dispatch({
+    //   type:"CHANGE_USER",
+    //   payload:userChatData
 
-    })
+    // })
   }
 
   useEffect(()=>{
@@ -51,8 +51,8 @@ const Profile = () => {
       const _data =await getDoc(doc(db, 'userDB', userID))
       setData(_data.data())
     }
-    console.log('getdata called')
     getData()
+    console.log(data)
   },[])
   return (
     <>
