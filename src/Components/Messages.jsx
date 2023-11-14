@@ -19,8 +19,8 @@ const Messages = () => {
     })
   },[])
   return (
-    <div className='relative'>
-      <MessageHeader/>
+    <div className='relative pb-14 mt-16'>
+      {/* <MessageHeader/> */}
       {messages?.map((e,i)=>{
         if(e.senderID == currentUser.uid){
           return(
@@ -41,7 +41,7 @@ const Messages = () => {
         }
       })}
 
-    < Input userID={userID} />
+    {/* < Input userID={userID} /> */}
 
     </div>
   )

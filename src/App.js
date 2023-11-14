@@ -12,6 +12,7 @@ import Login from './Components/Login';
 import { createContext, useEffect, useState } from 'react';
 import {getAuth, onAuthStateChanged } from 'firebase/auth';
 import Chats from './Components/Chats';
+import MessageContainer from './Components/MessageContainer';
 
 const appState = createContext()
 function App() {
@@ -29,11 +30,7 @@ function App() {
     }
   },[])
   })
-  const RouteProtector = () => {
-    if(!auth.currentUser){
-      return <Navigate to={'/login'}/>
-    }
-  }
+
   return (
     <appState.Provider value={{login, setLogin}} >
 
@@ -46,7 +43,7 @@ function App() {
           <Route path='/add' element={<AddPost/>}/>
           <Route path='/chat' element={<Messages/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/messages' element={<Messages/>}/>
+          <Route path='/messages' element={<MessageContainer/>}/> 
           <Route path='/chats' element={<Chats/>}/>
           <Route path='/profile/:userID' element={<Profile/>}/>
           <Route path='/myprofile' element={<MyProfile/>}/>
