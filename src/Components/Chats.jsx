@@ -31,8 +31,22 @@ const Chats = () => {
     <div>
 {Object.entries(data).map((e,i)=>{
     const user = e[1]
-    return(
-        <div className='flex' onClick={()=>clickHandler(user)} >
+    if(user.lastMessageSenderId==currentUser.uid){
+
+        return(
+            <div key={i} className='flex' onClick={()=>clickHandler(user)} >
+            <div className='p-2'><img className='rounded-full '  width={50} src={user.userInfo.photoURL} alt="" /></div>
+            <div className='p-2 justify-start flex flex-col text-start'>
+                <h2 className='font-bold'>{user.userInfo.displayName}</h2>
+                <h2>You : {user.lastMessage}</h2>
+            </div>
+        </div>
+         )
+        }
+    else{
+
+        return(
+            <div key={i} className='flex' onClick={()=>clickHandler(user)} >
             <div className='p-2'><img className='rounded-full '  width={50} src={user.userInfo.photoURL} alt="" /></div>
             <div className='p-2 justify-start flex flex-col text-start'>
                 <h2 className='font-bold'>{user.userInfo.displayName}</h2>
@@ -40,6 +54,7 @@ const Chats = () => {
             </div>
         </div>
          )
+        }
 })}
        
 

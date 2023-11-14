@@ -6,7 +6,7 @@ import Messages from './Components/Messages';
 import Profile from './Components/Profile';
 import Search from './Components/Search';
 import Comments from './Components/Comments';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MyProfile from './Components/MyProfile';
 import Login from './Components/Login';
 import { createContext, useEffect, useState } from 'react';
@@ -29,7 +29,11 @@ function App() {
     }
   },[])
   })
-  
+  const RouteProtector = () => {
+    if(!auth.currentUser){
+      return <Navigate to={'/login'}/>
+    }
+  }
   return (
     <appState.Provider value={{login, setLogin}} >
 

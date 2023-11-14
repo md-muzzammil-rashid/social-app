@@ -24,7 +24,7 @@ const Messages = () => {
       {messages?.map((e,i)=>{
         if(e.senderID == currentUser.uid){
           return(
-            <div className='flex items-center m-3 flex-row-reverse'>
+            <div key={i} className='flex items-center m-3 flex-row-reverse'>
       <span className='bg-blue-600 px-4  py-2 ml-2 rounded-full'>{e.message}</span>
     </div>
           )
@@ -33,7 +33,7 @@ const Messages = () => {
 
           return(
             
-            <div className='flex items-center m-3'>
+            <div key={i} className='flex items-center m-3'>
       <img src={data.user.userInfo.photoURL}  className='rounded-full h-8' alt="" />
       <span className='bg-gray-900 px-4 py-2 ml-2 rounded-full'>{e.message}</span>
     </div>

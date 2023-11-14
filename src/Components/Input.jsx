@@ -32,10 +32,12 @@ const Input = ({ userID }) => {
       }).then(setMessage(''))
       await updateDoc(doc(db,'userChats',currentUser.uid),{
         [data.chatID+".lastMessage"]:message,
+        [data.chatID+".lastMessageSenderId"]:currentUser.uid,
         [data.chatID+".date"]:serverTimestamp(),
       })
       await updateDoc(doc(db, 'userChats', data.user.userInfo.uid),{
         [data.chatID+".lastMessage"]:message,
+        [data.chatID+".lastMessageSenderId"]:currentUser.uid,
         [data.chatID+".date"]:serverTimestamp(),
       })
         
