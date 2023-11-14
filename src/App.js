@@ -13,6 +13,7 @@ import { createContext, useEffect, useState } from 'react';
 import {getAuth, onAuthStateChanged } from 'firebase/auth';
 import Chats from './Components/Chats';
 import MessageContainer from './Components/MessageContainer';
+import PhotoPreview from './Components/PhotoPreview';
 
 const appState = createContext()
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route index element={<Feed/>}/>
           <Route path='/search' element={<Search/>}/>
           <Route path='/home' element={<Feed/>}/>
+          <Route path='/post/:postID' element={<PhotoPreview/>}/>
           <Route path='/add' element={<AddPost/>}/>
           <Route path='/chat' element={<Messages/>}/>
           <Route path='/login' element={<Login/>}/>

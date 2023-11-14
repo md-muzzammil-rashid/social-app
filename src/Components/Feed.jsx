@@ -9,6 +9,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import { appState } from '../App';
 import Login from './Login';
 import BottomNav from './BottomNav';
+import { pink } from '@mui/material/colors';
 
 const Feed = () => {
     const useAppState = useContext(appState)
@@ -46,8 +47,8 @@ const Feed = () => {
                                 <img loading='lazy' src={e.imageLink} alt="" />
                             </div>
                             <div className='flex justify-start my-2'>
-                                <ThumbUpRoundedIcon className='mx-6' />
-                                <Link to={`${e.id}/comments`}><ChatBubbleRoundedIcon className='mx-2' /></Link>
+                                <ThumbUpRoundedIcon  sx={{ color: pink[500] }} className='mx-6' />
+                                <Link to={`${e.id}/comments`}><ChatBubbleRoundedIcon sx={{ color: pink[500] }} className='mx-2' /></Link>
                             </div>
                             <div className='justify-start flex ml-2'>
                                 <span className='font-semibold'>{e.likes} likes</span>

@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import SendIcon from '@mui/icons-material/Send';
-import { Timestamp, arrayUnion, collection, doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import { Timestamp, arrayUnion,  doc,  serverTimestamp,  updateDoc } from 'firebase/firestore';
 import { db } from './firebase/firebase';
 import { UserContext } from './Context/UserContext';
 import { v4 as uuid } from 'uuid';
 import { ChatContext } from './Context/ChatContext';
 
-const Input = ({ userID }) => {
+const Input = () => {
   const { currentUser } = useContext(UserContext)
   const { data } = useContext(ChatContext)
   const [message, setMessage] = useState('')

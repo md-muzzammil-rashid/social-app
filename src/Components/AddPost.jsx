@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { postRef, db, auth} from './firebase/firebase'
+import { getAuth } from 'firebase/auth'
 import { addDoc } from 'firebase/firestore'
 import { v4 } from 'uuid'
 import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
 import { cloudDB } from './firebase/firebase'
 import { TailSpin } from 'react-loader-spinner'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import BottomNav from './BottomNav'
 
 const AddPost = () => {
@@ -48,6 +49,7 @@ const AddPost = () => {
       return (
         <>
         <h2 className='text-xl font-bold'>Add Post</h2>
+        {getAuth().currentUser?
         <div className='flex flex-col'>
           {image?
           <div className='m-5'>
@@ -66,7 +68,7 @@ const AddPost = () => {
         <button onClick={ setFormData} className='bg-blue-500 w-11/12 m-4 mb-20 h-10 rounded-lg'>{uploadDataLoader?<TailSpin  height={25}/>:'Add Post'}</button>
       }
 
-          </div>
+          </div>:<Navigate to={'../login'}/>}
           <BottomNav/>
           </>
   )
