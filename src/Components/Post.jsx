@@ -70,7 +70,7 @@ const Post = ({e}) => {
                 <Link to={`/profile/${e.userId}`}><h3 className='font-bold text-sm'>{e.username}</h3></Link>
             </div>
             <div>
-                <img loading='lazy' src={e.imageLink} alt="" />
+                <img loading='lazy' onDoubleClick={likeClickHandler} src={e.imageLink} alt="" />
             </div>
             <div className='flex justify-start my-2'>
                 <ThumbUpRoundedIcon sx={{ color: pink[500] }} onClick={likeClickHandler} className='mx-6' />
