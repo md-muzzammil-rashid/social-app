@@ -22,7 +22,6 @@ const PhotoPreview = () => {
     return (
         <div className='w-full pt-1'>
 
-            <>
                 <div className='flex items-center '>
                     <img loading='lazy' className='m-2 w-8 h-8 border-gray-200 border-1  rounded-full' src={post.photoURL} alt="" />
                     <Link to={`/profile/${post.userId}`}><h3 className='font-bold text-sm'>{post.username}</h3></Link>
@@ -52,7 +51,7 @@ const PhotoPreview = () => {
                 </div>
                 <BottomNav />
 
-            </>
+
         </div>
     )
 }
