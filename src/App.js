@@ -14,6 +14,8 @@ import {getAuth, onAuthStateChanged } from 'firebase/auth';
 import Chats from './Components/Chats';
 import MessageContainer from './Components/MessageContainer';
 import PhotoPreview from './Components/PhotoPreview';
+import FollowersList from './Components/FollowersList';
+import FollowingList from './Components/FollowingList';
 
 const appState = createContext()
 function App() {
@@ -48,6 +50,8 @@ function App() {
           <Route path='/messages' element={<MessageContainer/>}/> 
           <Route path='/chats' element={<Chats/>}/>
           <Route path='/profile/:userID' element={<Profile/>}/>
+          <Route path='/profile/:userID/followers' element={<FollowersList/>}/>
+          <Route path='/profile/:userID/followings' element={<FollowingList/>}/>
           <Route path='/myprofile' element={<MyProfile/>}/>
           <Route path='/home/:id/comments' element={<Comments/>}/>
         </Routes>

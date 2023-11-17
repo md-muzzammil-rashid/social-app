@@ -52,16 +52,20 @@ const Profile = () => {
       setFollow(false)
       // console.log('not folloowied')
     }
+    let followerArr=[];
+    let followingArr=[];
     const followersCount = await getDocs(query(collection(db,`userDB/${userID}/followers`)))
     followersCount.forEach((elem)=>{
-      setFollowers([...followers, elem.data()])
+      followerArr.push(elem.data())
     })
+    setFollowers(followerArr)
+
     // console.log(followers)
     const followingCount = await getDocs(query(collection(db,`userDB/${userID}/followings`)))
     followingCount.forEach((elem)=>{
-      // console.log(elem.data())
-      setFollowing([...following, elem.data()])
+      followingArr.push(elem.data())
     })    
+    setFollowing(followingArr)
     // console.log(following)
   }
 
@@ -130,14 +134,18 @@ const Profile = () => {
             <h1 className='font-bold text-lg'>{post.length}</h1>
             Post
           </div>
+          <Link to={`../profile/${userID}/followers`}>
           <div>
             <h1 className='font-bold text-lg'>{followers.length}</h1>
             Followers
           </div>
+          </Link>
+          <Link to={`../profile/${userID}/followings`}>
           <div>
             <h1 className='font-bold text-lg'>{following.length}</h1>
             Following
           </div>
+          </Link>
         </div>
       </div>
       <div className='p-2 pl-4 pt-0'>
