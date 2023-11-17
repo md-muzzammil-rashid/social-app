@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
-import { doc, getDoc, updateDoc, setDoc, serverTimestamp, query, collection, where, getDocs } from 'firebase/firestore'
+import { doc, getDoc, updateDoc, setDoc, serverTimestamp, query, collection, where, getDocs, addDoc, deleteDoc } from 'firebase/firestore'
 import { db } from './firebase/firebase'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import BottomNav from './BottomNav'
@@ -14,7 +14,56 @@ const Profile = () => {
   const [data, setData] = useState({})
   const { dispatch } = useContext(ChatContext)
   const [post, setPost] = useState([])
+  const [follow, setFollow] = useState(null)
+  const [followers, setFollowers] = useState([])
+  const [following, setFollowing] = useState([])
 
+  const followClickHandler = async () => {
+    if (!follow) {
+      await setDoc(doc(db, "userDB" , `${currentUser.uid}/followings`,userID), {
+        uid: data.uid,
+        photoURL: data.photoURL,
+        displayName: data.displayName
+      })
+
+      await setDoc(doc(db, "userDB" , `${userID}/followers`,currentUser.uid), {
+        uid: currentUser.uid,
+        photoURL: currentUser.photoURL,
+        displayName: currentUser.displayName
+      }).then(setFollow(true),
+      getFollowStatus())
+
+      // console.log('data added')
+    }
+    if(follow)
+    {
+      await deleteDoc(doc(db,`userDB/${currentUser.uid}/followings`,userID))
+      await deleteDoc(doc(db,`userDB/${userID}/followers`,currentUser.uid)).then(setFollow(false),getFollowStatus())
+    }
+  }
+
+  const getFollowStatus = async ()=>{
+    const q = await getDoc(doc(db,`userDB/${currentUser.uid}/followings`, userID))
+    if(q.exists()){
+      setFollow(true)
+      // console.log('followed')
+    }
+    else{
+      setFollow(false)
+      // console.log('not folloowied')
+    }
+    const followersCount = await getDocs(query(collection(db,`userDB/${userID}/followers`)))
+    followersCount.forEach((elem)=>{
+      setFollowers([...followers, elem.data()])
+    })
+    // console.log(followers)
+    const followingCount = await getDocs(query(collection(db,`userDB/${userID}/followings`)))
+    followingCount.forEach((elem)=>{
+      // console.log(elem.data())
+      setFollowing([...following, elem.data()])
+    })    
+    // console.log(following)
+  }
 
   const messageClickHandler = async () => {
     const combinedID = currentUser.uid > data.uid ? currentUser.uid + "COM" + data.uid : data.uid + "COM" + currentUser.uid;
@@ -52,7 +101,7 @@ const Profile = () => {
     const q = query(collection(db, 'post'), where("userId", '==', userID))
     const querySnap = await getDocs(q)
     let _post = []
-    querySnap.forEach((e) => {_post.push([e.data() ,e.id])})
+    querySnap.forEach((e) => { _post.push([e.data(), e.id]) })
     setPost(_post)
   }
 
@@ -63,8 +112,8 @@ const Profile = () => {
       setData(_data.data())
     }
     getData()
-    console.log(post)
-  }, [])
+    getFollowStatus()
+  }, [follow])
   return (
     <>
       <div className='flex w-full fixed top-0 items-center '>
@@ -82,11 +131,11 @@ const Profile = () => {
             Post
           </div>
           <div>
-            <h1 className='font-bold text-lg'>421</h1>
+            <h1 className='font-bold text-lg'>{followers.length}</h1>
             Followers
           </div>
           <div>
-            <h1 className='font-bold text-lg'>182</h1>
+            <h1 className='font-bold text-lg'>{following.length}</h1>
             Following
           </div>
         </div>
@@ -95,8 +144,18 @@ const Profile = () => {
         <h2 className='flex font-bold'>{data.displayName}</h2>
         <p className='flex'>{data.bio}</p>
       </div>
+        {/* buttons  */}
       <div className='w-full'>
-        <button className='bg-blue-600 p-1 px-14 mr-2 rounded-lg w-5/12'> Follow </button>
+        {
+
+
+          follow ?
+            <button className='bg-zinc-900 p-1 px-14 mr-2 rounded-lg w-5/12' onClick={followClickHandler}> Following </button>
+            :
+            <button className='bg-blue-600 p-1 px-14 mr-2 rounded-lg w-5/12' onClick={followClickHandler}> Follow </button>
+
+        }
+
         <button onClick={messageClickHandler} className='bg-zinc-900 p-1 px-12 ml-2 rounded-lg w-5/12'> Message </button>
       </div>
       {/* div for photos */}
@@ -105,8 +164,8 @@ const Profile = () => {
           return (
             <div style={{ padding: "1px" }} className='w-1/3 aspect-square overflow-hidden object-cover  '>
               <Link to={`../post/${e[1]}`}>
-              <img className='object-cover min-w-full min-h-full items-center' src={e[0].imageLink} alt="" />
-            </Link>
+                <img className='object-cover min-w-full min-h-full items-center' src={e[0].imageLink} alt="" />
+              </Link>
             </div>
           )
         })}
