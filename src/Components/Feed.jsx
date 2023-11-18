@@ -33,21 +33,22 @@ const Feed = () => {
 
 
         <div className='mb-16'>
-            
             {loading ?
                 <div className='w-full flex justify-center h-screen items-center'>
                     <ThreeDots />
                 </div> :
-
                 data.map((e, i) => {
                     return (
                         <>
                         <Post e={e}/>
+                        
                             <BottomNav/>
+
                         </>
                     )
                 })
             }
+
 
         </div>
 

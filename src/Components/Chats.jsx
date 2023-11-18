@@ -8,6 +8,7 @@ import { ChatContext } from './Context/ChatContext'
 
 const Chats = () => {
     const { currentUser } = useContext(UserContext)
+    const [loading, setLoading]=useState(true)
     const [data, setData] = useState([])
     let dataArr = []
     const [search, setSearch] = useState('')
