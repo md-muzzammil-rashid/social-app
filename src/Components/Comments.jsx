@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import {collection, getDocs, addDoc, updateDoc, doc, increment} from 'firebase/firestore'
 import { db } from './firebase/firebase'
 import BottomNav from './BottomNav'
@@ -38,10 +38,14 @@ const Comments = () => {
         return(
             <div className='flex w-full items-center '>
                 <div className='w-14 m-2'>
+                    <Link to={`../profile/${e.uid}`}>
                 <img  className='rounded-full h-12 aspect-square' src={e.photoURL} alt="" />
+                    </Link>
                 </div>
             <div className='flex w-11/12 bg-slate-950  p-2 rounded-xl flex-col justify-center'>
+                <Link to={`../profile/${e.uid}`}>
                 <h2 className='bg-slate-950 font-extrabold text-start'>{e.username}</h2>
+                </Link>
                 <h2 className='bg-slate-950  text-start'>{e.comment}</h2>
             </div>
             </div>

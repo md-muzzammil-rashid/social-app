@@ -95,15 +95,21 @@ const Profile = () => {
         })
       )
     }
+
     
-    const q = getDoc(doc(db,`userChats/${currentUser.uid}`, combinedID))
-    console.log(q)
-    // dispatch({
-    //         type:"CHANGE_USER",
-    //         payload:doc.data()
-    //       })
-    //       navigate('/messages')
-    // })
+    const querySnap = await getDoc(doc(db,`userChats`,currentUser.uid))
+    let arr = []
+    
+    Object.entries(querySnap.data()).forEach(e=>arr.push(e[1]))
+    // console.log(arr)
+    // Object.entries(querySnap.data()).filter((e)=>{console.log(e[1].userInfo.uid.includes(data.uid))})
+      const required = arr.filter(e=>e.userInfo.uid.includes(data.uid))
+      console.log(required)
+    dispatch({
+            type:"CHANGE_USER",
+            payload: required[0]
+          })
+          navigate('/messages')
     
   }
 

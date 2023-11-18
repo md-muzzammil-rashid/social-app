@@ -23,10 +23,10 @@ const Feed = () => {
             _data.forEach((element) => {
                 setData((prevData) => [...prevData, { ...element.data(), id: element.id }])
             })
+            setLoading(false)
         }
         setLoading(true)
         getData();
-        setLoading(false)
     }, [])
 
     return (
