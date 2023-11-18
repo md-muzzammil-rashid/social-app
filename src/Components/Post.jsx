@@ -66,13 +66,13 @@ const Post = ({e}) => {
         console.log('h')
     },[like])
     return (
-        <div>
-            <div className='flex items-center '>
+        <div className='flex flex-col  ' >
+            <div className='flex items-center  '>
                 <img loading='lazy' className='m-2 w-8 h-8 border-gray-200 border-1  rounded-full' src={e.photoURL} alt="" />
                 <Link to={`/profile/${e.userId}`}><h3 className='font-bold text-sm'>{e.username}</h3></Link>
             </div>
-            <div className='relative'>
-                <img loading='lazy' onDoubleClick={likeClickHandler} src={e.imageLink} alt="" />
+            <div className='relative w-screen'>
+                <img loading='lazy' onDoubleClick={likeClickHandler} src={e.imageLink} className=' w-screen ' alt="" />
             </div>
             <div className='flex justify-start my-2'>
                 {!like?
