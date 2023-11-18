@@ -22,11 +22,11 @@ function App() {
   const auth = getAuth()
   const [login, setLogin]=useState(false)
   const RouteProtector = ({children})=>{
-    if(!auth){
-      return(<Navigate to={'/login'} />)
-    }
-    else{
-    return(children)}
+    // if(!auth){
+    //   return(<Navigate to={'/login'} />)
+    // }
+    // else{
+    // return(children)}
   }
   useEffect(()=>{
     onAuthStateChanged(auth,(user)=>{
