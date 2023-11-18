@@ -31,7 +31,7 @@ const Chats = () => {
         }
         Object.entries(data).forEach((e) => { dataArr.push(e[1]); })
         // setSearchResult(dataArr.filter(a=>a.userInfo.displayName.toLowerCase().includes(search.toLowerCase())))
-        setSearchResult(dataArr.filter((e) => e.userInfo.displayName.toLowerCase().includes(search)))
+        setSearchResult(dataArr.filter((e) => e.userInfo.displayName.toLowerCase().trim().includes(search.toLowerCase().trim())))
         console.log(dataArr[0])
         currentUser.uid && getData()
     }, [currentUser.uid, search])

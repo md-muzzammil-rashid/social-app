@@ -21,6 +21,13 @@ const appState = createContext()
 function App() {
   const auth = getAuth()
   const [login, setLogin]=useState(false)
+  const RouteProtector = ({children})=>{
+    if(!auth){
+      return(<Navigate to={'/login'} />)
+    }
+    else{
+    return(children)}
+  }
   useEffect(()=>{
     onAuthStateChanged(auth,(user)=>{
     if(user){
@@ -40,9 +47,9 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route index element={<Feed/>}/>
-          <Route path='/search' element={<Search/>}/>
-          <Route path='/home' element={<Feed/>}/>
+          <Route index element={<RouteProtector><Feed/></RouteProtector>}/>
+          <Route path='/search' element={<RouteProtector><Search/></RouteProtector>}/>
+          <Route path='/home' element={<RouteProtector><Feed/></RouteProtector>}/>
           <Route path='/post/:postID' element={<PhotoPreview/>}/>
           <Route path='/add' element={<AddPost/>}/>
           <Route path='/chat' element={<Messages/>}/>
@@ -52,7 +59,6 @@ function App() {
           <Route path='/profile/:userID' element={<Profile/>}/>
           <Route path='/profile/:userID/followers' element={<FollowersList/>}/>
           <Route path='/profile/:userID/followings' element={<FollowingList/>}/>
-          <Route path='/myprofile' element={<MyProfile/>}/>
           <Route path='/home/:id/comments' element={<Comments/>}/>
         </Routes>
        

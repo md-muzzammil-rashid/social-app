@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
@@ -6,12 +6,14 @@ import ChatBubbleOutlinedIcon from '@mui/icons-material/ChatBubbleOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import { auth } from './firebase/firebase';
 import { useContext } from 'react';
 import { appState } from '../App';
+import { UserContext } from './Context/UserContext';
 
 const BottomNav = () => {
+    const {currentUser}=useContext(UserContext)
     const useAppState = useContext(appState)
     return (
         <div className='flex justify-between px-8 py-3 fixed bottom-0 w-screen'>
@@ -27,11 +29,12 @@ const BottomNav = () => {
             <NavLink to={'/chats'}>
                 <ChatBubbleOutlineOutlinedIcon fontSize='large' />
             </NavLink>
-            <NavLink to={'/myprofile'}>
+            <NavLink to={`../profile/${currentUser.uid}`}>
                 {useAppState.login ?
                     <img height={'32'} width={'32'} className='rounded-full' src={auth.currentUser.photoURL} alt="" />
                     :
-                    <AccountCircleOutlinedIcon fontSize='large' />
+                    <Navigate to={'/login'}/>
+                    // <AccountCircleOutlinedIcon fontSize='large' />
                 }
             </NavLink>
         </div>
