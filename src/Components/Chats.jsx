@@ -17,7 +17,7 @@ const Chats = () => {
     const navigate = useNavigate()
     const clickHandler = (user) => {
         dispatch({ type: 'CHANGE_USER', payload: user })
-        navigate('/messages')
+        navigate('../home/messages')
     }
 
 
@@ -37,7 +37,7 @@ const Chats = () => {
         currentUser.uid && getData()
     }, [currentUser.uid, search])
     return (
-        <>
+        <div className='md:w-2/6 md:fixed md:right-0 chat-res min-h-screen md:border-l   '>
             <div className='flex w-full justify-center items-center p-4 box-border ' >
                 <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder='Search' className='bg-zinc-800 rounded-lg w-full p-2 px-4 border-0 ' />
             </div>
@@ -110,7 +110,7 @@ const Chats = () => {
 
             </div>
             <BottomNav />
-        </>
+        </div>
     )
 }
 

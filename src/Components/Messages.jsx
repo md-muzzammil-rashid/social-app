@@ -19,7 +19,7 @@ const Messages = () => {
     })
   },[])
   return (
-    <div className='relative pb-14 mt-16'>
+    <div className='relative pb-14 overflow-scroll max-h-screen pb-32 mt-16 md:'>
       {/* <MessageHeader/> */}
       {messages?.map((e,i)=>{
         if(e.senderID == currentUser.uid){

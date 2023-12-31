@@ -47,7 +47,7 @@ const AddPost = () => {
       },[image])
 
       return (
-        <>
+        <div className='res-des'>
         <h2 className='text-xl font-bold'>Add Post</h2>
         {getAuth().currentUser?
         <div className='flex flex-col'>
@@ -70,7 +70,7 @@ const AddPost = () => {
 
           </div>:<Navigate to={'../login'}/>}
           <BottomNav/>
-          </>
+          </div>
   )
 }
 

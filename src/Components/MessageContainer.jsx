@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 const MessageContainer = () => {
     const {userID}=useParams()
   return (
-    <div className='relative'>
+    <div className='relative h-full md:w-2/6 md:fixed md:right-0 md:border-l'>
         <MessageHeader/>
         <Messages/>
         <Input userID={userID}/>

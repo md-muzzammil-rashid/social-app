@@ -7,6 +7,7 @@ import BottomNav from './BottomNav'
 import { ChatContext } from './Context/ChatContext'
 import { UserContext } from './Context/UserContext'
 import { getAuth, signOut } from 'firebase/auth';
+import Chats from './Chats';
 
 const Profile = () => {
   const navigate = useNavigate()
@@ -132,8 +133,9 @@ const Profile = () => {
   }, [follow,auth])
   return (
     userID==currentUser.uid?
-    <>
-      <div className='flex w-full fixed top-0 items-center '>
+    <div className='res-des md:ml-64  flex'>
+      <div>
+      <div className='flex w-full fixed top-0 items-center  '>
         <button onClick={() => { navigate(-1) }} ><ArrowBackIcon className='m-3' /></button>
         <h2 className='ml-1 text-lg font-bold text-white'>{data.displayName} </h2>
       </div>
@@ -186,11 +188,17 @@ const Profile = () => {
           )
         })}
       </div>
+      
       <BottomNav />
+      </div>
+      <div className='hidden md:block'>
+      <Chats/>
+      </div>
 
-    </>
+    </div>
     :
-    <>
+    <div className='res-des flex'>
+      <div>
       <div className='flex w-full fixed top-0 items-center '>
         <button onClick={() => { navigate(-1) }} ><ArrowBackIcon className='m-3' /></button>
         <h2 className='ml-1 text-lg font-bold text-white'>{data.displayName}</h2>
@@ -250,8 +258,12 @@ const Profile = () => {
         })}
       </div>
       <BottomNav />
+      </div>
+      <div className='hidden md:block'>
+      <Chats/>
+      </div>
 
-    </>
+    </div>
   )
 }
 

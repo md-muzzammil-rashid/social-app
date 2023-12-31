@@ -16,10 +16,14 @@ import MessageContainer from './Components/MessageContainer';
 import PhotoPreview from './Components/PhotoPreview';
 import FollowersList from './Components/FollowersList';
 import FollowingList from './Components/FollowingList';
+import { useMediaQuery } from 'react-responsive';
+import FeedDesktop from './Components/FeedDesktop';
+import MidFeed from './Components/MidFeed';
 
 const appState = createContext()
 function App() {
   const auth = getAuth()
+  const isBigScreen = useMediaQuery({query:'(min-width: 769px)'})
   const [login, setLogin]=useState(false)
   const RouteProtector = ({children})=>{
     if(!auth){
@@ -46,6 +50,7 @@ function App() {
 
     <Router>
       <div className="App">
+        {!isBigScreen?
         <Routes>
           <Route index element={<RouteProtector><Feed/></RouteProtector>}/>
           <Route path='/search' element={<RouteProtector><Search/></RouteProtector>}/>
@@ -54,13 +59,39 @@ function App() {
           <Route path='/add' element={<AddPost/>}/>
           <Route path='/chat' element={<Messages/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/messages' element={<MessageContainer/>}/> 
+          <Route path='home/messages' element={<MessageContainer/>}/> 
           <Route path='/chats' element={<Chats/>}/>
           <Route path='/profile/:userID' element={<Profile/>}/>
           <Route path='/profile/:userID/followers' element={<FollowersList/>}/>
           <Route path='/profile/:userID/followings' element={<FollowingList/>}/>
           <Route path='/home/:id/comments' element={<Comments/>}/>
         </Routes>
+        :
+        <Routes>
+          <Route index element={<FeedDesktop/>}/>
+          <Route path='/add' element={<AddPost/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/chats' element={<Chats/>}/>
+          <Route path='/messages' element={<MessageContainer/>}/>
+          <Route path='/search' element={<Search/>}/>
+          <Route path='/home/' element={<FeedDesktop/>}>
+            <Route index element={<Chats/>}/>
+            <Route path='messages' element={<MessageContainer/>}/>
+          </Route>
+
+
+
+          <Route path='/profile/:userID' element={<Profile/>}/>
+          <Route path='/profile/:userID/followers' element={<FollowersList/>}/>
+          <Route path='/profile/:userID/followings' element={<FollowingList/>}/>
+          {/* <Route path='/home/' element={<MidFeed/>}>
+            <Route index element={<Feed/>}/>
+            <Route path='../home/profile/:userID' element={<Profile/>}/>
+
+          </Route> */}
+
+        </Routes>
+}
        
         
       </div>

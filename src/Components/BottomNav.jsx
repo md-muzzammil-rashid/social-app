@@ -13,27 +13,44 @@ import { appState } from '../App';
 import { UserContext } from './Context/UserContext';
 
 const BottomNav = () => {
-    const {currentUser}=useContext(UserContext)
+    const { currentUser } = useContext(UserContext)
     const useAppState = useContext(appState)
     return (
-        <div className='flex justify-between px-8 py-3 fixed bottom-0 w-screen'>
+        <div className='flex justify-between px-8 py-3 fixed bottom-0 w-screen md:max-h-screen md:left-0 md:flex-col md:w-64 md:justify-around md:items-start md:border-r  md:min-h-screen '>
             <NavLink to={'/home'} >
-                <HomeRoundedIcon fontSize='large' />
+                <div className='flex justify-center font-bold items-center'>
+                    <HomeRoundedIcon fontSize='large' />
+                    <h2 className='hidden p-2 md:block'>Home</h2>
+                </div>
             </NavLink>
             <NavLink to={'/search'} >
-                <SearchOutlinedIcon fontSize='large' />
+                <div className='flex justify-center font-bold items-center'>
+                    <SearchOutlinedIcon fontSize='large' />
+                    <h2 className='hidden p-2 md:block '>Search</h2>
+                </div>
             </NavLink>
             <NavLink to={'/add'}>
-                <AddOutlinedIcon fontSize='large' />
+                <div className='flex justify-center font-bold items-center'>
+                    <AddOutlinedIcon fontSize='large' />
+                    <h2 className='hidden md:block p-2 '>Home</h2>
+                </div>
             </NavLink>
             <NavLink to={'/chats'}>
-                <ChatBubbleOutlineOutlinedIcon fontSize='large' />
+                <div className='flex justify-center font-bold items-center md:'>
+                    <ChatBubbleOutlineOutlinedIcon fontSize='large' />
+                    <h2 className='hidden md:block p-2 '>Chats</h2>
+                </div>
             </NavLink>
             <NavLink to={`../profile/${currentUser.uid}`}>
                 {useAppState.login ?
-                    <img height={'32'} width={'32'} className='rounded-full' src={auth.currentUser.photoURL} alt="" />
+                    <div className='flex justify-center font-bold items-center md:'>
+
+                        <img height={'32'} width={'32'} className='rounded-full' src={auth.currentUser.photoURL} alt="" />
+                        <h2 className='hidden md:block p-2 '>Profile</h2>
+                    </div>
+
                     :
-                    <Navigate to={'/login'}/>
+                    <Navigate to={'/login'} />
                     // <AccountCircleOutlinedIcon fontSize='large' />
                 }
             </NavLink>

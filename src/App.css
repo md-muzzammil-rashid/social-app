@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (min-width: 769px) {
+  .chat-res{
+    min-width: 20rem;
+  }
+  .search-res{
+    margin-right: 20rem;
+  }
+  .res-des{
+    min-margin-right: 20rem;
+    margin-left: 16rem;
+    margin-right: 33%;
+  }
+}
+@media screen and (min-width: 1010px) {
+  
+  .search-res{
+    margin-right:33%;
+  }
+}

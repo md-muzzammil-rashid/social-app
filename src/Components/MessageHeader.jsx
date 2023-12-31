@@ -8,7 +8,7 @@ const MessageHeader = () => {
   const navigate = useNavigate()
   const {data}=useContext(ChatContext)
   return (
-    <div className='flex items-center fixed top-0 w-screen z-10'>
+    <div className=' flex items-center fixed top-0 w-screen z-10'>
 
       <button className='ml-3' onClick={()=>navigate(-1)}><ArrowBackIcon/></button>
       <img width={40} className='rounded-full m-3' src={data.user.userInfo.photoURL} alt="" />
