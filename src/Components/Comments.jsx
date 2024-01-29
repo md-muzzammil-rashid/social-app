@@ -24,6 +24,7 @@ const Comments = () => {
     }
     useEffect(()=>{
         async function getData(){
+            setData([])
             const _data = await getDocs(collection(db,`/post/${id}/comments/`));
             _data.forEach(element=>{
                 setData((prevData)=>[...prevData, {...element.data()}])
