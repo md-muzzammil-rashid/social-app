@@ -72,7 +72,7 @@ const Post = ({e}) => {
                 <Link to={`/profile/${e.userId}`}><h3 className='font-bold text-sm'>{e.username}</h3></Link>
             </div>
             <div className='relative w-screen'>
-                <img loading='lazy' onDoubleClick={likeClickHandler} src={e.imageLink} className=' w-screen md:w-1/3 ' alt="" />
+                <img loading='lazy' onDoubleClick={likeClickHandler} src={e.imageLink} className=' w-screen md:w-1/3 object-cover aspect-square' alt="" />
             </div>
             <div className='flex justify-start my-2'>
                 {!like?

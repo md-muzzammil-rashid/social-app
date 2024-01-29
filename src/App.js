@@ -68,6 +68,7 @@ function App() {
         </Routes>
         :
         <Routes>
+          <Route path='/home/:id/comments' element={<Comments/>}/>
           <Route index element={<FeedDesktop/>}/>
           <Route path='/add' element={<AddPost/>}/>
           <Route path='/login' element={<Login/>}/>

@@ -27,7 +27,7 @@ const Search = () => {
 
   return (
     <div className='md:flex'>
-    <div className='md:ml-64 md:w-2/3 search-res md:box-border md:mr-80 w-full'>
+    <div className='md:ml-64  md:w-2/3 search-res md:box-border md:mr-80 w-full'>
         <input value={search} onChange={(e)=>setSearch(e.target.value)} type="text" name="" id="" placeholder='Search...' className='border-red-50 rounded border m-3 p-2 rounded-s h-10 w-11/12 ' />
         {searchResult.map((e,i)=>{
           if(!search=="")
@@ -44,7 +44,7 @@ const Search = () => {
         })}
     </div>
     <BottomNav/> 
-    <div >
+    <div className='hidden md:block' >
        <Chats  />
     </div>
     </div>

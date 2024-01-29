@@ -249,7 +249,7 @@ const Profile = () => {
       <div className='mt-16 flex flex-wrap'>
         {post.map((e, i) => {
           return (
-            <div style={{ padding: "1px" }} className='w-1/3 aspect-square overflow-hidden object-cover  '>
+            <div key={i} style={{ padding: "1px" }} className='w-1/3 aspect-square overflow-hidden object-cover  '>
               <Link to={`../post/${e[1]}`}>
                 <img className='object-cover min-w-full min-h-full items-center' src={e[0].imageLink} alt="" />
               </Link>
