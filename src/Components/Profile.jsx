@@ -110,7 +110,7 @@ const Profile = () => {
             type:"CHANGE_USER",
             payload: required[0]
           })
-          navigate('/messages')
+          navigate('/home/messages')
     
   }
 
@@ -133,8 +133,8 @@ const Profile = () => {
   }, [follow,auth])
   return (
     userID==currentUser.uid?
-    <div className='res-des md:ml-64 w-full flex'>
-      <div className='w-full'>
+    <div className='res-des md:ml-64 w-full md:w-auto flex'>
+      <div className='w-full '>
       <div className='flex w-full fixed top-0 items-center  '>
         <button onClick={() => { navigate(-1) }} ><ArrowBackIcon className='m-3' /></button>
         <h2 className='ml-1 text-lg font-bold text-white'>{data.displayName} </h2>
