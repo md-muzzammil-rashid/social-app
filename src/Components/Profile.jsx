@@ -133,8 +133,8 @@ const Profile = () => {
   }, [follow,auth])
   return (
     userID==currentUser.uid?
-    <div className='res-des md:ml-64  flex'>
-      <div>
+    <div className='res-des md:ml-64 w-full flex'>
+      <div className='w-full'>
       <div className='flex w-full fixed top-0 items-center  '>
         <button onClick={() => { navigate(-1) }} ><ArrowBackIcon className='m-3' /></button>
         <h2 className='ml-1 text-lg font-bold text-white'>{data.displayName} </h2>
@@ -197,8 +197,8 @@ const Profile = () => {
 
     </div>
     :
-    <div className='res-des flex'>
-      <div>
+    <div className='res-des flex w-full'>
+      <div className='w-full'>
       <div className='flex w-full fixed top-0 items-center '>
         <button onClick={() => { navigate(-1) }} ><ArrowBackIcon className='m-3' /></button>
         <h2 className='ml-1 text-lg font-bold text-white'>{data.displayName}</h2>
