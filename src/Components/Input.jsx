@@ -51,9 +51,9 @@ const Input = () => {
 
 
   return (
-    <div className='fixed box-border px-2 w-full bottom-0 md:w-2/6 md:right-0' >
+    <div className='fixed box-border px-2 w-full bottom-0 w-2xl' >
       <input onKeyUp={(k)=>keyHandler(k)} value={message} onChange={(e) => { setMessage(e.target.value) }} placeholder='Message...' className='border rounded-full w-full px-5 pr-10  my-2 box-border    py-2 ' type="text" />
-      <SendIcon onClick={sendButtonHandler} className='fixed right-4 bottom-4' />
+      <SendIcon onClick={sendButtonHandler} className='absolute right-4 bottom-4' />
     </div>
   )
 }

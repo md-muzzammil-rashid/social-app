@@ -38,7 +38,7 @@
 }
 
 @media screen and (min-width: 769px) {
-  .chat-res{
+  /* .chat-res{
     min-width: 20rem;
   }
   .search-res{
@@ -48,7 +48,14 @@
     min-margin-right: 20rem;
     margin-left: 16rem;
     margin-right: 33%;
-  }
+  } */
+.w-2xl{
+  min-width: 42rem;
+  width: 42rem;
+  max-width: 42rem;
+}
+
+
 }
 @media screen and (min-width: 1010px) {
   

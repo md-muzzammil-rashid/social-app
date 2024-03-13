@@ -32,7 +32,7 @@ const Feed = () => {
     return (
 
 
-        <div className='mb-16 md:pl-72 md:box-border md:max-w-4xl  md:w-full md:flex md:flex-col md:fixed md:max-h-screen md:overflow-scroll md:justify-center'>
+        <div className='mb-16 w-2xl md:mb-0 md:items-center md:box-border  h-screen overflow-scroll md:w-full md:flex md:flex-col md:fixed md:max-h-screen md:overflow-scroll md:justify-center'>
             {loading ?
                 <div className='w-full flex justify-center h-screen items-center'>
                     <ThreeDots />

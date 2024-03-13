@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import ChatBubbleOutlinedIcon from '@mui/icons-material/ChatBubbleOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { NavLink, Navigate } from 'react-router-dom';
 import { auth } from './firebase/firebase';
 import { useContext } from 'react';
@@ -16,7 +13,7 @@ const BottomNav = () => {
     const { currentUser } = useContext(UserContext)
     const useAppState = useContext(appState)
     return (
-        <div className='flex justify-between px-8 py-3 fixed bottom-0 w-screen md:max-h-screen md:left-0 md:flex-col md:w-64 md:justify-around md:items-start md:border-r  md:min-h-screen '>
+        <div className='flex z-50  px-8 py-3 fixed bottom-0  md:max-h-screen md:left-0 md:flex-col  md:justify-around md:items-center md:border-r md:w-96 justify-between w-full   md:min-h-screen '>
             <NavLink to={'/home'} >
                 <div className='flex justify-center font-bold items-center'>
                     <HomeRoundedIcon fontSize='large' />
@@ -32,7 +29,7 @@ const BottomNav = () => {
             <NavLink to={'/add'}>
                 <div className='flex justify-center font-bold items-center'>
                     <AddOutlinedIcon fontSize='large' />
-                    <h2 className='hidden md:block p-2 '>Home</h2>
+                    <h2 className='hidden md:block p-2 '>Add</h2>
                 </div>
             </NavLink>
             <NavLink to={'/chats'}>

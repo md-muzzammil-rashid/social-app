@@ -2,6 +2,8 @@ import { collection, getDocs } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { db } from './firebase/firebase'
+import BottomNav from './BottomNav'
+
 
 const FollowingList = () => {
     const {userID}=useParams()
@@ -20,7 +22,8 @@ const FollowingList = () => {
         getFollowing()
     },[])
   return (
-    <div>
+    <div className='w-2xl'>
+      <BottomNav/>
          {followers.map((e,i)=>{
           
             return(

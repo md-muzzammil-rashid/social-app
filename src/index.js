@@ -9,9 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <UserContextProvider>
     <ChatContextProvider>
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
     </ChatContextProvider>
   </UserContextProvider>
 );

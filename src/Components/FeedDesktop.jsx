@@ -7,16 +7,12 @@ import MidFeed from './MidFeed'
 
 const FeedDesktop = () => {
   return (
-    <div className=' flex  '>
+    <div className=' flex justify-center h-screen w-2xl '>
         <BottomNav/>
-        {/* <Feed/> */}
-        {/* <Chats/> */}
-        <MidFeed/>
-        <Chats/>
+        <Feed/>
 
         
 
-        <Outlet/>
     </div>
   )
 }

@@ -12,7 +12,7 @@ const MessageHeader = () => {
 
       <button className='ml-3' onClick={()=>navigate(-1)}><ArrowBackIcon/></button>
       <img width={40} className='rounded-full m-3' src={data.user.userInfo.photoURL} alt="" />
-      <h2 className='font-bold'>{data.user.userInfo.displayName}</h2>
+      <h2 onClick={()=>navigate(`/profile/${data.user.userInfo.uid}`)} className='font-bold cursor-pointer'>{data.user.userInfo.displayName}</h2>
     </div>
   )
 }

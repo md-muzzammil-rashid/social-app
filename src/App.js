@@ -49,7 +49,8 @@ function App() {
     <appState.Provider value={{login, setLogin}} >
 
     <Router>
-      <div className="App">
+      <div className={` ${isBigScreen?"w-full flex justify-center  ":""}`}>
+      <div className={`App ${isBigScreen?"max-w-2xl flex  ":""}`}>
         {!isBigScreen?
         <Routes>
           <Route index element={<RouteProtector><Feed/></RouteProtector>}/>
@@ -67,7 +68,9 @@ function App() {
           <Route path='/home/:id/comments' element={<Comments/>}/>
         </Routes>
         :
+        
         <Routes>
+          <Route path='/post/:postID' element={<PhotoPreview/>}/>
           <Route path='/home/:id/comments' element={<Comments/>}/>
           <Route index element={<FeedDesktop/>}/>
           <Route path='/add' element={<AddPost/>}/>
@@ -75,10 +78,8 @@ function App() {
           <Route path='/chats' element={<Chats/>}/>
           <Route path='/messages' element={<MessageContainer/>}/>
           <Route path='/search' element={<Search/>}/>
-          <Route path='/home/' element={<FeedDesktop/>}>
-            <Route index element={<Chats/>}/>
-            <Route path='messages' element={<MessageContainer/>}/>
-          </Route>
+          <Route path='/home/messages' element={<MessageContainer/>}/>
+          <Route path='/home' element={<FeedDesktop/>}/>
 
 
 
@@ -95,6 +96,7 @@ function App() {
 }
        
         
+      </div>
       </div>
     </Router>
     </appState.Provider>

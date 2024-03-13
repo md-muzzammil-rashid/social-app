@@ -133,7 +133,7 @@ const Profile = () => {
   }, [follow,auth])
   return (
     userID==currentUser.uid?
-    <div className='res-des md:ml-64 w-full md:w-auto flex'>
+    <div className='res-des w-full  flex'>
       <div className='w-full '>
       <div className='flex w-full fixed top-0 items-center  '>
         <button onClick={() => { navigate(-1) }} ><ArrowBackIcon className='m-3' /></button>
@@ -180,7 +180,7 @@ const Profile = () => {
       <div className='mt-16 flex flex-wrap'>
         {post.map((e, i) => {
           return (
-            <div style={{ padding: "1px" }} className='w-1/3 aspect-square overflow-hidden object-cover  '>
+            <div key={e[0].imageLink} style={{ padding: "1px" }} className='w-1/3 aspect-square overflow-hidden object-cover  '>
               <Link to={`../post/${e[1]}`}>
                 <img className='object-cover min-w-full min-h-full items-center' src={e[0].imageLink} alt="" />
               </Link>
@@ -191,13 +191,10 @@ const Profile = () => {
       
       <BottomNav />
       </div>
-      <div className='hidden md:block'>
-      <Chats/>
-      </div>
 
     </div>
     :
-    <div className='res-des flex w-full'>
+    <div className=' flex w-full w-2xl '>
       <div className='w-full'>
       <div className='flex w-full fixed top-0 items-center '>
         <button onClick={() => { navigate(-1) }} ><ArrowBackIcon className='m-3' /></button>
@@ -258,9 +255,6 @@ const Profile = () => {
         })}
       </div>
       <BottomNav />
-      </div>
-      <div className='hidden md:block'>
-      <Chats/>
       </div>
 
     </div>

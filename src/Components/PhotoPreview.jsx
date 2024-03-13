@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { db } from './firebase/firebase'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
-import BottomNav from './BottomNav'
 import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded'
 import { UserContext } from './Context/UserContext'
 import { SvgIcon } from '@mui/material'
+import BottomNav from './BottomNav'
 
 
 const PhotoPreview = () => {
@@ -115,7 +115,7 @@ useEffect(()=>{
 
         // </div>
 
-        <div className='flex flex-col max-w-sm justify-center w-screenʼ ' >
+        <div className='flex flex-col max-w-sm justify-center w-2xl ' >
         <div className='flex items-center  '>
             <img loading='lazy' className='m-2 w-8 h-8 border-gray-200 border-1  rounded-full' src={post.photoURL} alt="" />
             <Link to={`/profile/${post.userId}`}><h3 className='font-bold text-sm'>{post.username}</h3></Link>
@@ -151,7 +151,9 @@ useEffect(()=>{
         <div className='flex text-sm text-gray-600 px-2'>
             <span>{new Date(post.timestamp).toLocaleDateString()}</span>
         </div>
+        <BottomNav/>
     </div>
+    
 
     )
 }
